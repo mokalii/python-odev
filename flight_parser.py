@@ -9,9 +9,9 @@ from query import run_queries
 from validator import load_airports
 
 
-STUDENT_ID = "251ADB185"
-FIRST_NAME = "AliBerk"
-LAST_NAME = "Cetin"
+STUDENT_ID= "251ADB185"
+FIRST_NAME= "AliBerk"
+LAST_NAME= "Cetin"
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -45,27 +45,27 @@ def main(argv: list[str] | None = None) -> int:
             if not isinstance(db, list) or not all(isinstance(row, dict) for row in db):
                 raise ValueError("JSON database must be a list of objects")
         else:
-            airports = load_airports(args.a)
+            airports= load_airports(args.a)
             if args.i:
-                paths = [args.i]
+                paths =[args.i]
             else:
-                paths = []
+                paths =[]
                 for name in sorted(os.listdir(args.d)):
-                    path = os.path.join(args.d, name)
+                    path= os.path.join(args.d, name)
                     if name.endswith(".csv") and os.path.isfile(path):
                         paths.append(path)
                 if not paths:
                     raise ValueError("No CSV files found")
 
-            db_path = args.o if args.o is not None else "db.json"
-            log_path = os.path.join(os.path.dirname(db_path) or ".", "errors.log")
+            db_path= args.o if args.o is not None else "db.json"
+            log_path =os.path.join(os.path.dirname(db_path) or ".", "errors.log")
             handler = logging.FileHandler(log_path, mode="w", encoding="utf-8")
             handler.setFormatter(logging.Formatter(
                 "%(asctime)s %(levelname)s %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
             ))
             logger.addHandler(handler)
 
-            db, errors = parse_files(paths, airports)
+            db, errors =parse_files(paths, airports)
             with open(db_path, "w", encoding="utf-8") as file:
                 json.dump(db, file, indent=2)
             for error in errors:
@@ -80,8 +80,8 @@ def main(argv: list[str] | None = None) -> int:
                 raise ValueError("Every query must be an object")
 
             results = run_queries(db, queries)
-            date = datetime.now().strftime("%Y%m%d_%H%M")
-            name = f"response_{STUDENT_ID}_{FIRST_NAME}_{LAST_NAME}_{date}.json"
+            date= datetime.now().strftime("%Y%m%d_%H%M")
+            name =f"response_{STUDENT_ID}_{FIRST_NAME}_{LAST_NAME}_{date}.json"
             with open(os.path.join(args.r, name), "w", encoding="utf-8") as file:
                 json.dump(results, file, indent=2, allow_nan=False)
         return 0

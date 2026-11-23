@@ -54,13 +54,13 @@ def validate_row(fields: list[str], airports: set[str]) -> str | None:
         return "INVALID_PRICE"
     if not math.isfinite(number):
         return "INVALID_PRICE"
-    if number <= 0:
+    if number<= 0:
         return "NON_POSITIVE_PRICE"
     return None
 
 
 def to_record(fields: list[str]) -> dict:
-    flight_id, origin, destination, departure, arrival, price = [f.strip() for f in fields]
+    flight_id, origin, destination, departure, arrival, price =[f.strip() for f in fields]
     return {
         "flight_id": flight_id,
         "origin": origin,
