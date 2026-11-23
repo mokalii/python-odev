@@ -16,6 +16,6 @@ Main prompts:
 2. Check validation order, duplicates, file names and the query results.
 3. Make the code simpler and easier for a student to understand, and test it.
 
-ChatGPT conversation: [https://chatgpt.com/share/6b039ac9-4030-83ed-9f03-301a1d8e3480]
+ChatGPT conversation: [https://chatgpt.com/share/6b039c7b-bbc4-83eb-a002-bacaf99bd1c2]
 
 i changed my student id and name. I run the code in codespaces and checked the result files
